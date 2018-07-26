@@ -21,7 +21,7 @@ namespace Server
             m_address = GetIPAddress();
             m_hostName = GetHostName();
             nSockets = new ArrayList();
-
+            
             Listening();
             
             switch (m_data)
@@ -58,51 +58,37 @@ namespace Server
         {
             TcpListener tcpListener = null;
 
-            bool hasConnected = false;
-
             try
             {
                 tcpListener = new TcpListener(IPAddress.Parse(m_address), 8080);
-
-                //Start listening for client requests
                 tcpListener.Start();
-
-                //Buffer for reading data
+                
                 Byte[] bytes = new Byte[256];
-
-                //Enter the listening loop
+                
                 while (true)
                 {
                     ManagerLib.Utils.LogService("Waiting for a connection...");
-
-                    //Perform a blocking call to accept requests
+                    
                     TcpClient client = tcpListener.AcceptTcpClient();
 
                     ManagerLib.Utils.LogService("Connected");
-
-                    //Get a stream object for reading and writing
+                    
                     NetworkStream stream = client.GetStream();
 
                     int i;
-
-                    //Loop to receive all the data sent by the client
                     while((i = stream.Read(bytes, 0, bytes.Length)) != 0)
                     {
-                        //Translate data bytes to a ASCII string
                         m_data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
                         
                         ManagerLib.Utils.LogService("Received : " + m_data);
 
-                        byte[] msg = System.Text.Encoding.ASCII.GetBytes("Success");
-
-                        //Send back response
+                        byte[] msg = System.Text.Encoding.ASCII.GetBytes("Success;" + m_address + ";" + m_hostName);
+                        
                         stream.Write(msg, 0, msg.Length);
-
 
                         ManagerLib.Utils.LogService("Sent: " + m_data);
                     }
 
-                    //Shutdown and end connection
                     client.Close();
                 }
             }
@@ -113,7 +99,6 @@ namespace Server
             }
             finally
             {
-                //Stop listening for new clients
                 tcpListener.Stop();
             }
         }
@@ -128,7 +113,6 @@ namespace Server
         {
             IPHostEntry IPHost = Dns.GetHostByName(Dns.GetHostName());
             return IPHost.HostName;
-            //return Dns.GetHostName();
         }
     }
 }

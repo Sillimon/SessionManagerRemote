@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteManager", "RemoteMana
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "Listener\Server.csproj", "{06211075-B069-4C33-8B63-4751A50CF744}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagerLib", "ClassLibrary1\ManagerLib.csproj", "{B8E317D2-E825-456F-9223-72B1A412A737}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagerLib", "ManagerLib\ManagerLib.csproj", "{B8E317D2-E825-456F-9223-72B1A412A737}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

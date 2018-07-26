@@ -79,13 +79,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\ManagerLib.csproj">
-      <Project>{b8e317d2-e825-456f-9223-72b1a412a737}</Project>
-      <Name>ManagerLib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Listener\Server.csproj">
       <Project>{06211075-b069-4c33-8b63-4751a50cf744}</Project>
       <Name>Server</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ManagerLib\ManagerLib.csproj">
+      <Project>{b8e317d2-e825-456f-9223-72b1a412a737}</Project>
+      <Name>ManagerLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
