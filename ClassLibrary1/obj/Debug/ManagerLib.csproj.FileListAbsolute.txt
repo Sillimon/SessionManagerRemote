@@ -1,0 +1,5 @@
+C:\Users\Simon\documents\visual studio 2017\Projects\testService1\ClassLibrary1\obj\Debug\ManagerLib.csproj.CoreCompileInputs.cache
+C:\Users\Simon\documents\visual studio 2017\Projects\testService1\ClassLibrary1\bin\Debug\ManagerLib.dll
+C:\Users\Simon\documents\visual studio 2017\Projects\testService1\ClassLibrary1\bin\Debug\ManagerLib.pdb
+C:\Users\Simon\documents\visual studio 2017\Projects\testService1\ClassLibrary1\obj\Debug\ManagerLib.dll
+C:\Users\Simon\documents\visual studio 2017\Projects\testService1\ClassLibrary1\obj\Debug\ManagerLib.pdb
