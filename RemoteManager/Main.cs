@@ -13,8 +13,9 @@ namespace RemoteManager
 {
     public partial class Main : Form
     {
-        public string url = "";
-        public int action = Action.NOTHING;
+        private string m_ID = "";
+
+        private int m_action = Action.NOTHING;
 
         public Main()
         {
@@ -27,42 +28,47 @@ namespace RemoteManager
         {
             try
             {
-                string message = action.ToString();
+                TcpClient client = new TcpClient(m_ID, 8080);
 
-                //Create a TcpClient
-                TcpClient client = new TcpClient(url, 8080);
+                Byte[] data = System.Text.Encoding.ASCII.GetBytes(m_action.ToString());
 
-                //Translate the passed message into ASCII and store it as a byte array
-                Byte[] data = System.Text.Encoding.ASCII.GetBytes(message);
-
-                //Get a client stream for reading and writing
                 NetworkStream ns = client.GetStream();
 
-                //Update state
                 tbState.Text = "Connected !";
 
-                //Send the message to the connected TcpServer
                 ns.Write(data, 0, data.Length);
-                
-                ManagerLib.Utils.LogService("Sent : " + message);
 
-                //Receive the TcpServer.response//
+                ManagerLib.Utils.LogService("Sent : " + m_action.ToString());
 
-                //Buffer to store the response bytes
+                //----------------------------Receive the TcpServer.response----------------------------//
+
                 data = new Byte[256];
 
-                //String to store the response ASCII representation
                 string responseData = String.Empty;
 
-                //Read the first batch of the TcpServer response bytes
                 Int32 bytes = ns.Read(data, 0, data.Length);
                 responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
 
-                tbState.Text = responseData;
-
                 ManagerLib.Utils.LogService("Received : " + responseData);
 
-                //Close everything
+                string[] splitter = responseData.Split(';');
+
+                tbState.Text = splitter[0];
+                
+                if(splitter.Length > 1)
+                {
+                    DialogResult dr = MessageBox.Show("Add " + m_ID + " to your contacts ?", "Add contact", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if(dr == DialogResult.Yes)
+                    {
+                        string IP = splitter[1];
+                        string HostName = splitter[2];
+
+                        AddContactForm addContact = new AddContactForm(IP, HostName);
+                        addContact.ShowDialog();
+                    }
+                }
+                
                 ns.Close();
                 client.Close();
             }
@@ -78,27 +84,27 @@ namespace RemoteManager
 
         private void tbURL_TextChanged(object sender, EventArgs e)
         {
-            this.url = tbURL.Text;
+            this.m_ID = tbURL.Text;
         }
         
         private void rbSwitchOff_CheckedChanged(object sender, EventArgs e)
         {
-            action = Action.SWITCH_OFF;
+            m_action = Action.SWITCH_OFF;
         }
 
         private void rbSleep_CheckedChanged(object sender, EventArgs e)
         {
-            action = Action.SLEEP;
+            m_action = Action.SLEEP;
         }
 
         private void rbLogOff_CheckedChanged(object sender, EventArgs e)
         {
-            action = Action.LOG_OFF;
+            m_action = Action.LOG_OFF;
         }
 
         private void rbLock_CheckedChanged(object sender, EventArgs e)
         {
-            action = Action.LOCK;
+            m_action = Action.LOCK;
         }
         #endregion
     }

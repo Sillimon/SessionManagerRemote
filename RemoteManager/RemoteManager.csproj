@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddContactForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddContactForm.Designer.cs">
+      <DependentUpon>AddContactForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Const.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -54,6 +60,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddContactForm.resx">
+      <DependentUpon>AddContactForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -80,7 +89,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\ManagerLib.csproj">
+    <ProjectReference Include="..\ManagerLib\ManagerLib.csproj">
       <Project>{b8e317d2-e825-456f-9223-72b1a412a737}</Project>
       <Name>ManagerLib</Name>
     </ProjectReference>
