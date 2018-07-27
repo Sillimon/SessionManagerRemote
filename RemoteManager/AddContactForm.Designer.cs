@@ -93,6 +93,7 @@
             this.btAdd.TabIndex = 6;
             this.btAdd.Text = "ADD CONTACT";
             this.btAdd.UseVisualStyleBackColor = true;
+            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
             // 
             // AddContactForm
             // 

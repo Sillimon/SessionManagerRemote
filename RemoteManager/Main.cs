@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net.Sockets;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +21,12 @@ namespace RemoteManager
         public Main()
         {
             InitializeComponent();
+
+            ManagerLib.DataBaseHelper db = new ManagerLib.DataBaseHelper();
+
+            db.OpenConnection();
+
+            dgvContact.DataSource = db.ShowDataInGridView("SELECT * FROM Contact");
         }
 
 
@@ -107,5 +114,22 @@ namespace RemoteManager
             m_action = Action.LOCK;
         }
         #endregion
+
+
+        public void test()
+        {
+            var uri = new Uri("http://randomIP:port/Service");
+
+            var binding =
+                new WebHttpBinding(uri.Scheme == Uri.UriSchemeHttp
+                ? WebHttpSecurityMode.Transport
+                : WebHttpSecurityMode.None);
+
+            var factory = new ChannelFactory<IService1>(binding, new EndpointAddress(uri));
+
+            var client = factory.CreateChannel();
+
+            string s = client.SayHelloWorld();
+        }
     }
 }

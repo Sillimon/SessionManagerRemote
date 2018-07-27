@@ -37,7 +37,9 @@
             this.gbRadio = new System.Windows.Forms.GroupBox();
             this.tbState = new System.Windows.Forms.TextBox();
             this.lbState = new System.Windows.Forms.Label();
+            this.dgvContact = new System.Windows.Forms.DataGridView();
             this.gbRadio.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvContact)).BeginInit();
             this.SuspendLayout();
             // 
             // btExecute
@@ -137,11 +139,20 @@
             this.lbState.TabIndex = 8;
             this.lbState.Text = "State :";
             // 
+            // dgvContact
+            // 
+            this.dgvContact.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvContact.Location = new System.Drawing.Point(204, 58);
+            this.dgvContact.Name = "dgvContact";
+            this.dgvContact.Size = new System.Drawing.Size(584, 195);
+            this.dgvContact.TabIndex = 9;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dgvContact);
             this.Controls.Add(this.lbState);
             this.Controls.Add(this.tbState);
             this.Controls.Add(this.gbRadio);
@@ -151,6 +162,7 @@
             this.Text = "Form1";
             this.gbRadio.ResumeLayout(false);
             this.gbRadio.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvContact)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -167,6 +179,7 @@
         private System.Windows.Forms.GroupBox gbRadio;
         private System.Windows.Forms.TextBox tbState;
         private System.Windows.Forms.Label lbState;
+        private System.Windows.Forms.DataGridView dgvContact;
     }
 }
 

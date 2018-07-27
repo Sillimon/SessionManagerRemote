@@ -31,5 +31,19 @@ namespace RemoteManager
             tbHostName.Text = HostName;
             tbHostName.Enabled = false;
         }
+
+        private void btAdd_Click(object sender, EventArgs e)
+        {
+            ManagerLib.DataBaseHelper db = new ManagerLib.DataBaseHelper();
+
+            db.OpenConnection();
+
+            //Nice awful query - score for SQL injections : 90/100
+            string query = "INSERT INTO Contact VALUES ('" + tbName.Text + "', '" + tbIP.Text + "', '" + tbHostName.Text + "')";
+
+            db.ExecuteQueries(query);
+
+            db.CloseConnection();
+        }
     }
 }
